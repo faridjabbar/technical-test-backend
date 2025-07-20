@@ -3,7 +3,6 @@ package controller
 import (
 	"net/http"
 	"technical-test-backend/helper"
-	"technical-test-backend/model/web"
 	webResponse "technical-test-backend/model/web"
 	"technical-test-backend/service"
 
@@ -20,7 +19,7 @@ func NewUserController(userService service.UserService) UserController {
 	}
 }
 func (controller *UserControllerImpl) Create(c *gin.Context) {
-	request := web.UserCreateRequest{}
+	request := webResponse.UserCreateRequest{}
 	helper.ReadFromRequestBody(c, &request)
 
 	userResponse := controller.UserService.Create(&request, c)
