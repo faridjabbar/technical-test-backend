@@ -17,7 +17,7 @@ type TraditionalFood struct {
 	// Fields
 	Name           string `gorm:"size:50;uniqueIndex:idx_traditiona_food"`
 	RegionalOrigin string `gorm:"size:50;uniqueIndex:idx_traditiona_food"`
-	MainIngredient string `gorm:"size:255"`
+	MainIngredient string `gorm:""`
 	Type           string `gorm:"size:20"`
 	Description    string `gorm:"size:255"`
 }

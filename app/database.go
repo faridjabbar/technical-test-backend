@@ -33,6 +33,7 @@ func ConnectDatabase(user, host, password, port, db string) *gorm.DB {
 		// Migrasi Database
 		&domain.User{},
 		&domain.History{},
+		&domain.TraditionalFood{},
 	)
 	if err != nil {
 		panic("failed to auto migrate schema")
