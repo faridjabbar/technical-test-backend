@@ -32,7 +32,6 @@ func Auth(next func(c *gin.Context, auth *AccessDetails), roles []string) gin.Ha
 				ID:   uint(claims["id"].(float64)),
 				Role: claims["role"].(string),
 				Name: claims["name"].(string),
-				Nip:  claims["nip"].(string),
 			}
 		})
 		if err != nil {

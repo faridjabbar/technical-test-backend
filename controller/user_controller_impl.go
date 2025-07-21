@@ -36,11 +36,11 @@ func (controller *UserControllerImpl) Login(c *gin.Context) {
 	request := webResponse.UserLoginRequest{}
 	helper.ReadFromRequestBody(c, &request)
 
-	controller.UserService.Login(&request, c)
+	jwtToken := controller.UserService.Login(&request, c)
 	webResponse := webResponse.WebResponse{
 		Success: true,
 		Message: "Login successfully",
-		Data:    nil,
+		Data:    jwtToken,
 	}
 
 	c.JSON(http.StatusOK, webResponse)
