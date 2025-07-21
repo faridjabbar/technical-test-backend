@@ -9,6 +9,7 @@ require (
 	github.com/gertd/go-pluralize v0.2.1
 	github.com/gin-gonic/gin v1.10.1
 	github.com/go-playground/validator/v10 v10.27.0
+	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/spf13/viper v1.20.1
 	github.com/stretchr/testify v1.10.0
 	golang.org/x/crypto v0.40.0
