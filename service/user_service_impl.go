@@ -1,6 +1,7 @@
 package service
 
 import (
+	"technical-test-backend/exception"
 	"technical-test-backend/helper"
 	"technical-test-backend/model/domain"
 	"technical-test-backend/model/web"
@@ -49,4 +50,20 @@ func (service *UserServiceImpl) Create(request *web.UserCreateRequest, c *gin.Co
 	user = service.UserRepository.Create(db, user)
 
 	return user.ToUserResponse()
+}
+
+func (service *UserServiceImpl) Login(request *web.UserLoginRequest, c *gin.Context) {
+	err := service.Validate.Struct(request)
+	helper.PanicIfError(err)
+
+	db := service.DB.Begin()
+	defer helper.CommitOrRollback(db)
+
+	user := service.UserRepository.FindByEmail(db, &request.Email)
+
+	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(request.Password))
+	if err != nil {
+		helper.PanicIfError(exception.ErrUnauthorized)
+	}
+
 }

@@ -6,4 +6,5 @@ import (
 
 type UserController interface {
 	Create(context *gin.Context)
+	Login(context *gin.Context)
 }

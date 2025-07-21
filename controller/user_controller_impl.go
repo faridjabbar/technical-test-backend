@@ -31,3 +31,17 @@ func (controller *UserControllerImpl) Create(c *gin.Context) {
 
 	c.JSON(http.StatusCreated, webResponse)
 }
+
+func (controller *UserControllerImpl) Login(c *gin.Context) {
+	request := webResponse.UserLoginRequest{}
+	helper.ReadFromRequestBody(c, &request)
+
+	controller.UserService.Login(&request, c)
+	webResponse := webResponse.WebResponse{
+		Success: true,
+		Message: "Login successfully",
+		Data:    nil,
+	}
+
+	c.JSON(http.StatusOK, webResponse)
+}

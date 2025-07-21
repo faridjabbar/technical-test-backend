@@ -22,3 +22,12 @@ func (repository *UserRepositoryImpl) Create(db *gorm.DB, user *domain.User) *do
 	helper.PanicIfError(err)
 	return user
 }
+
+func (repository *UserRepositoryImpl) FindByEmail(db *gorm.DB, email *string) domain.User {
+	var user domain.User
+	err := db.Where(&domain.User{
+		Email: *email,
+	}).First(&user).Error
+	helper.PanicIfError(err)
+	return user
+}

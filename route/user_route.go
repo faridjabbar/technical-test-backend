@@ -20,4 +20,5 @@ func UserRoute(router *gin.Engine, db *gorm.DB, validate *validator.Validate) {
 	userController := controller.NewUserController(userService)
 
 	router.POST("/users", userController.Create)
+	router.GET("/users/login", userController.Login)
 }
