@@ -13,6 +13,7 @@ import (
 
 const (
 	RoleAdministrator = "Administrator"
+	RoleClient        = "Client"
 )
 
 type AccessDetails struct {

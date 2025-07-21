@@ -22,7 +22,7 @@ func TraditionalFoodRoute(router *gin.Engine, db *gorm.DB, validate *validator.V
 	traditionalFoodController := controller.NewTraditionalFoodController(traditionalFoodService)
 
 	router.DELETE("/traditional-food/:id", auth.Auth(traditionalFoodController.Delete, []string{auth.RoleAdministrator}))
-	router.GET("/traditional-food", auth.Auth(traditionalFoodController.FindAll, []string{auth.RoleAdministrator}))
+	router.GET("/traditional-food", auth.Auth(traditionalFoodController.FindAll, []string{auth.RoleAdministrator, auth.RoleClient}))
 	router.POST("/traditional-food", auth.Auth(traditionalFoodController.Create, []string{auth.RoleAdministrator}))
 	router.PUT("/traditional-food/:id", auth.Auth(traditionalFoodController.Update, []string{auth.RoleAdministrator}))
 }

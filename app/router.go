@@ -14,5 +14,6 @@ func NewRouter(db *gorm.DB, validate *validator.Validate) *gin.Engine {
 	router := gin.New()
 	router.Use(handler.ErrorHandler(helper.DatabaseError))
 	route.UserRoute(router, db, validate)
+	route.TraditionalFoodRoute(router, db, validate)
 	return router
 }
