@@ -14,12 +14,16 @@ func NewTraditionalFoodRepository() TraditionalFoodRepository {
 	return &TraditionalFoodRepositoryImpl{}
 }
 
-func (repository *TraditionalFoodRepositoryImpl) FindAll(db *gorm.DB, filters *map[string]string) domain.TraditionalFoods {
+var searchColumns = []string{"name", "regional_origin", "main_ingredient", "type", "description"}
+
+func (repository *TraditionalFoodRepositoryImpl) FindAll(db *gorm.DB, filters *map[string]string, search string) domain.TraditionalFoods {
 	traditionalFood := domain.TraditionalFoods{}
 	tx := db.Model(&domain.TraditionalFood{})
 
 	err := helper.ApplyFilter(tx, filters)
 	helper.PanicIfError(err)
+
+	tx.Where(helper.SearchCondition(search, searchColumns))
 
 	err = tx.Find(&traditionalFood).Error
 	helper.PanicIfError(err)

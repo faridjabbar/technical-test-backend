@@ -24,7 +24,10 @@ func NewTraditionalFoodController(traditionalFoodService service.TraditionalFood
 
 func (controller *TraditionalFoodControllerImpl) FindAll(c *gin.Context, auth *auth.AccessDetails) {
 	filters := helper.FilterFromQueryString(c, "name.like")
-	traditionalFoodResponses := controller.TraditionalFoodService.FindAll(auth, &filters, c)
+
+	search := c.Query("search")
+
+	traditionalFoodResponses := controller.TraditionalFoodService.FindAll(auth, &filters, c, search)
 	webResponse := webResponse.WebResponse{
 		Success: true,
 		Message: helper.MessageDataFoundOrNot(traditionalFoodResponses),

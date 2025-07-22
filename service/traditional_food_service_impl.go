@@ -31,11 +31,11 @@ func NewTraditionalFoodService(
 	}
 }
 
-func (service *TraditionalFoodServiceImpl) FindAll(auth *auth.AccessDetails, filters *map[string]string, c *gin.Context) []web.TraditionalFoodResponse {
+func (service *TraditionalFoodServiceImpl) FindAll(auth *auth.AccessDetails, filters *map[string]string, c *gin.Context, search string) []web.TraditionalFoodResponse {
 	db := service.DB.Begin()
 	defer helper.CommitOrRollback(db)
 
-	traditionalFoods := service.TraditionalFoodRepository.FindAll(db, filters)
+	traditionalFoods := service.TraditionalFoodRepository.FindAll(db, filters, search)
 	return traditionalFoods.ToTraditionalFoodResponses()
 }
 
