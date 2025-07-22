@@ -6,7 +6,7 @@ import (
 
 type TraditionalFoodResponse struct {
 	// Required Fields
-	ID          string    `json:"id"`
+	ID          uint      `json:"id"`
 	CreatedAt   time.Time `json:"created_at"`
 	CreatedByID uint      `json:"created_by_id"`
 	UpdatedAt   time.Time `json:"updated_at"`

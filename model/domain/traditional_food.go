@@ -25,6 +25,7 @@ type TraditionalFood struct {
 func (traditionalFood *TraditionalFood) ToTraditionalFoodResponse() web.TraditionalFoodResponse {
 	return web.TraditionalFoodResponse{
 		// Required Fields
+		ID:          traditionalFood.ID,
 		CreatedAt:   traditionalFood.CreatedAt,
 		CreatedByID: traditionalFood.CreatedByID,
 		UpdatedAt:   traditionalFood.UpdatedAt,
